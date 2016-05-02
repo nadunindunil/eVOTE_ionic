@@ -1,0 +1,43 @@
+<ion-view view-title="Profile">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-image: url('img/back.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/nadun.jpg');"></div>
+                <h3><a class="light">Nadun Indunl</a></h3>
+                <h4>CSE Undergraduate</h4>
+            </div>
+        </div>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.activity" class="tab-item">
+                <i class="icon ion-arrow-graph-up-right"></i> Activity
+            </a>
+            <a ui-sref="app.friends" class="tab-item">
+                <i class="icon ion-android-contacts"></i> Friends
+            </a>
+            <a ui-sref="app.groups" class="tab-item">
+                <i class="icon ion-android-people"></i> Groups
+            </a>
+        </div>
+        <h4 class="content padding double-padding-x">Polls</h4>
+        <div class="list animate-fade-slide-in-right">
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/dulitha.jpg">
+                <h2>Dulitha Dabare</h2>
+                <p>Should we protest eating</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/dilanka.jpg">
+                <h2>Dilanka Gamage</h2>
+                <p>Who is coming to Bradby second leg</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/udara.jpg">
+                <h2>Udara Bibile</h2>
+                <p>Companies we got selectd to</p>
+                <i class="icon ion-chatbubble muted"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
