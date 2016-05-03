@@ -92,6 +92,75 @@ evote.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMate
     ionicMaterialInk.displayEffect();
 });
 
+
+
+
+evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab(false);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
+
+    ionicMaterialMotion.pushDown({
+        selector: '.push-down'
+    });
+    ionicMaterialMotion.fadeSlideInRight({
+        selector: '.animate-fade-slide-in .item'
+    });
+    
+
+    $scope.grp = $stateParams.groupId;
+
+    $ionicModal.fromTemplateUrl('templates/poll-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.openModal = function() {
+        $scope.modal.show();
+        
+    };
+
+    $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+    // Cleanup the modal when we're done with it
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+
+
+});
+
+evote.controller('PollCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = true;
+    $scope.$parent.setExpanded(true);
+    $scope.$parent.setHeaderFab(false);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
+
+    ionicMaterialMotion.pushDown({
+        selector: '.push-down'
+    });
+    ionicMaterialMotion.fadeSlideInRight({
+        selector: '.animate-fade-slide-in .item'
+    });
+    
+
+    $scope.pll = $stateParams.groupId;
+
+
+});
+
 evote.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     // Set Header
     $scope.$parent.showHeader();
