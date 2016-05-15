@@ -1,13 +1,13 @@
 <ion-view view-title="Groups">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="list animate-fade-slide-in-right">
-            <a href="#/app/groups/cse13" class="item item-avatar item-icon-right">
+    <ion-content ng-class="{expanded:isExpanded}">
+        <div  class="list">
+            <a ng-repeat="group in GroupsList track by $index" href="#/app/groups/{{group.group_ID}}" class="item item-avatar item-icon-right">
                 <img src="img/dulitha.jpg">
-                <h2>CSE 13 Family</h2>
-                <p>CSE 13 batch polling group</p>
+                <h2>{{group.group_name}}</h2>
+                <p>{{group.description}}</p>
                 <i class="icon ion-chevron-right muted"></i>
             </a>
-            <a href="#/app/groups/TTmora" class="item item-avatar item-icon-right">
+            <!-- <a href="#/app/groups/TTmora" class="item item-avatar item-icon-right">
                 <img src="img/dilanka.jpg">
                 <h2>Mora TT</h2>
                 <p>TT team polling Group</p>
@@ -18,7 +18,10 @@
                 <h2>RC M2</h2>
                 <p>Royal <3 </p>
                 <i class="icon ion-chevron-right muted"></i>
-            </a>
+            </a> -->
+
         </div>
+
+        
     </ion-content>
 </ion-view>

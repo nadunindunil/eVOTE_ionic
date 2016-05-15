@@ -82,7 +82,7 @@ evote.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeou
     };
 });
 
-evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout, $stateParams, ionicMaterialInk) {
+evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout, $rootScope,$stateParams, ionicMaterialInk) {
     $scope.user = {};
 
     $scope.$parent.clearFabs();
@@ -96,15 +96,24 @@ evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout,
         $http.post("http://localhost:8000/api/authenticate", $scope.user)
             .success(function(data) {
                 console.log(data);
-                if (data == "found"){
-                    $state.go('app.profile');
-                }
-                else{
-
+                if (data == "not found"){
+                    
                     var alertPopup = $ionicPopup.alert({
                      title: 'Incorrect Credentials',
                      template: 'please check your user name and password again!'
                     });
+                }
+                else{
+
+                    $state.go('app.profile');
+                    //alert(data[0].name);
+                    $rootScope.name = data[0].name;
+                    $rootScope.id = data[0].id;
+
+                    console.log($rootScope.id);
+
+
+                    
                 }
                 
             })
@@ -148,25 +157,25 @@ evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMate
 
     $scope.grp = $stateParams.groupId;
 
-    $ionicModal.fromTemplateUrl('templates/poll-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+  //   $ionicModal.fromTemplateUrl('templates/poll-modal.html', {
+  //       scope: $scope,
+  //       animation: 'slide-in-up'
+  //   }).then(function(modal) {
+  //       $scope.modal = modal;
+  //   });
 
-    $scope.openModal = function() {
-        $scope.modal.show();
+  //   $scope.openModal = function() {
+  //       $scope.modal.show();
         
-    };
+  //   };
 
-    $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-    // Cleanup the modal when we're done with it
-    $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-    });
+  //   $scope.closeModal = function() {
+  //   $scope.modal.hide();
+  // };
+  //   // Cleanup the modal when we're done with it
+  //   $scope.$on('$destroy', function() {
+  //       $scope.modal.remove();
+  //   });
 
 
 });
@@ -213,13 +222,15 @@ evote.controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMa
     ionicMaterialInk.displayEffect();
 });
 
-evote.controller('ProfileCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+evote.controller('ProfileCtrl', function($scope, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
+
+    $scope.usrname = $rootScope.name;
 
     // Set Motion
     $timeout(function() {
@@ -255,7 +266,7 @@ evote.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicM
     ionicMaterialInk.displayEffect();
 })
 
-evote.controller('GroupsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('GroupsCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
@@ -271,5 +282,26 @@ evote.controller('GroupsCtrl', function($scope, $stateParams, $timeout, ionicMat
     ionicMaterialMotion.fadeSlideInRight({
         selector: '.animate-fade-slide-in .item'
     });
+
+    $scope.GroupsList = {};
+
+    $http.get("http://localhost:8000/api/getUserGroups/"+ $rootScope.id)
+            .success(function(data) {
+
+                $scope.GroupsList = data;
+                console.log($scope.GroupsList);
+                
+                
+            })
+            .error(function(data) {
+                var alertPopup = $ionicPopup.alert({
+                     title: 'SOMETHING WENT WRONG!',
+                     template: 'please check your internet connection!'
+                    });
+                
+            });
+
+
+    
 
 });
