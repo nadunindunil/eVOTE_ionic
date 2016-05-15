@@ -82,7 +82,7 @@ evote.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeou
     };
 });
 
-evote.controller('LoginCtrl', function($scope,$http,$state, $timeout, $stateParams, ionicMaterialInk) {
+evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout, $stateParams, ionicMaterialInk) {
     $scope.user = {};
 
     $scope.$parent.clearFabs();
@@ -99,10 +99,21 @@ evote.controller('LoginCtrl', function($scope,$http,$state, $timeout, $statePara
                 if (data == "found"){
                     $state.go('app.profile');
                 }
+                else{
+
+                    var alertPopup = $ionicPopup.alert({
+                     title: 'Incorrect Credentials',
+                     template: 'please check your user name and password again!'
+                    });
+                }
                 
             })
             .error(function(data) {
-                console.log("error");
+                var alertPopup = $ionicPopup.alert({
+                     title: 'SOMETHING WENT WRONG!',
+                     template: 'please check your internet connection!'
+                    });
+                
             });
 
     };
