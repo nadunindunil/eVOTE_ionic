@@ -14,9 +14,7 @@ evote.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeou
         });
     }
 
-    ////////////////////////////////////////
-    // Layout Methods
-    ////////////////////////////////////////
+    
 
     $scope.hideNavBar = function() {
         document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
@@ -84,15 +82,39 @@ evote.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeou
     };
 });
 
-evote.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+evote.controller('LoginCtrl', function($scope,$http,$state, $timeout, $stateParams, ionicMaterialInk) {
+    $scope.user = {};
+
+    $scope.$parent.clearFabs();
+    $timeout(function() {
+        $scope.$parent.hideHeader();
+    }, 0);
+    ionicMaterialInk.displayEffect();
+
+    $scope.authenticate = function(){
+        console.log($scope.user);
+        $http.post("http://localhost:8000/api/authenticate", $scope.user)
+            .success(function(data) {
+                console.log(data);
+                if (data == "found"){
+                    $state.go('app.profile');
+                }
+                
+            })
+            .error(function(data) {
+                console.log("error");
+            });
+
+    };
+});
+
+evote.controller('RegisterCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
     $scope.$parent.clearFabs();
     $timeout(function() {
         $scope.$parent.hideHeader();
     }, 0);
     ionicMaterialInk.displayEffect();
 });
-
-
 
 
 evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {

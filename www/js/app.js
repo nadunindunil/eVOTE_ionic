@@ -22,7 +22,7 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-    // Turn off caching for demo simplicity's sake
+    
     $ionicConfigProvider.views.maxCache(0);
 
     /*
@@ -129,6 +129,19 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
             'menuContent': {
                 templateUrl: 'templates/login.html',
                 controller: 'LoginCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+
+    .state('app.register', {
+        url: '/register',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/register.html',
+                controller: 'RegisterCtrl'
             },
             'fabContent': {
                 template: ''
