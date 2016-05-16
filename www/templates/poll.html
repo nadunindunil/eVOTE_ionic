@@ -1,24 +1,21 @@
 <ion-view view-title="poll {{pll}}">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="list animate-fade-slide-in-right">
-            <a href="#/app/groups/grp/poll1" class="item item-avatar item-icon-right">
-                <img src="img/dulitha.jpg">
-                <h2>poll 1</h2>
-                <p>CSE 13 batch polling group</p>
-                <i class="icon ion-chevron-right muted"></i>
-            </a>
-            <a href="#/app/groups/grp/poll2" class="item item-avatar item-icon-right">
-                <img src="img/dilanka.jpg">
-                <h2>poll 2</h2>
-                <p>TT team polling Group</p>
-                <i class="icon ion-chevron-right muted"></i>
-            </a>
-            <a href="#/app/groups/grp/poll3" class="item item-avatar item-icon-right">
-                <img src="img/udara.jpg">
-                <h2>poll 3</h2>
-                <p>Royal <3 </p>
-                <i class="icon ion-chevron-right muted"></i>
-            </a>
+    <ion-content ng-class="{expanded:isExpanded}">
+        <div class="item card-item">
+            <div class="card stable-bg ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar" style="background-image: url('img/dulitha.jpg');"></span>
+                    
+                    <strong>{{PollInfo.pll_name}}</strong> 
+                    <p> {{PollInfo.description}}</p>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-chatbubble positive"></i> 6
+                        
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> Deadline: {{PollInfo.deadline}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

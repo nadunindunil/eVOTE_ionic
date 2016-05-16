@@ -1,22 +1,23 @@
 <ion-view view-title="{{grp}}">
-    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
-        <div class="item card-item">
-            <div ui-sref="app.groups" class="card stable-bg ink ink-dark">
+    <ion-content ng-class="{expanded:isExpanded}">
+        <!-- <div class="item card-item">
+            <div ng-repeat="poll in PollsList track by $index" href="#/app/groups/{{grp}}/{{poll.pll_name}}" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/dulitha.jpg');"></span>
-                    <strong>Dulitha Dabare</strong> asked.
-                    <p> Guys, When do you like to have the network test?</p>
+                    <strong>{{poll.name}}</strong> asked.
+                    <strong>{{poll.pll_name}}</strong> 
+                    <p> {{poll.description}}</p>
                     <div class="card-footer text-right">
                         <i class="icon ion-chatbubble positive"></i> 6
                         
                         <div class="pull-left">
-                            <i class="icon ion-clock"></i> just now
+                            <i class="icon ion-clock"></i> Deadline: {{poll.deadline}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="item card-item">
+        </div> -->
+<!--         <div class="item card-item">
             <div ui-sref="app.groups" class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/dilanka.jpg');"></span>
@@ -48,6 +49,29 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div  class="list">
+            <a ng-repeat="poll in PollsList track by $index" href="#/app/groups/{{grp}}/{{poll.poll_ID}}" class="item item-avatar item-icon-right">
+                <img src="img/material1.jpg">
+                <strong>{{poll.name}}</strong> asked.
+                <strong>{{poll.pll_name}}</strong> 
+                <p> {{poll.description}}</p>
+                <i class="icon ion-chevron-right muted"></i>
+            </a>
+            <!-- <a href="#/app/groups/TTmora" class="item item-avatar item-icon-right">
+                <img src="img/dilanka.jpg">
+                <h2>Mora TT</h2>
+                <p>TT team polling Group</p>
+                <i class="icon ion-chevron-right muted"></i>
+            </a>
+            <a href="#/app/groups/RCM2" class="item item-avatar item-icon-right">
+                <img src="img/udara.jpg">
+                <h2>RC M2</h2>
+                <p>Royal <3 </p>
+                <i class="icon ion-chevron-right muted"></i>
+            </a> -->
+
         </div>
     </ion-content>
 </ion-view>

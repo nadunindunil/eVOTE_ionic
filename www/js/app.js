@@ -45,11 +45,11 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
                 controller: 'ActivityCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-100 flap"><i class="icon ion-paper-airplane energized"></i></button>',
+                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-100"><i class="icon ion-paper-airplane energized"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-activity').classList.toggle('on');
-                    }, 200);
+                    }, 50);
                 }
             }
         }
@@ -74,11 +74,11 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
                 controller: 'GroupsCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-calm-100 drop"><i class="icon ion-plus calm"></i></button>',
+                template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-calm-100"><i class="icon ion-plus calm"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-gallery').classList.toggle('on');
-                    }, 600);
+                    }, 50);
                 }
             }
         }
@@ -92,11 +92,11 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
         controller: 'GroupCtrl'
       },
       'fabContent': {
-                template: '<button id="fab-group" class="button button-fab button-fab-top-right expanded button-assertive-100 drop"><i class="icon ion-plus assertive"></i></button>',
+                template: '<button id="fab-group" class="button button-fab button-fab-top-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-group').classList.toggle('on');
-                    }, 600);
+                    }, 50);
                 }
             }
     }
@@ -104,24 +104,24 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
     
   })
 
-    // .state('app.polls', {
-    //     url: '/groups/:groupId/:pollId',
-    //     views: {
-    //         'menuContent': {
-    //             templateUrl: 'templates/poll.html',
-    //             controller: 'PollCtrl'
-    //         }
-    //         // ,
-    //         // 'fabContent': {
-    //         //     template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-calm drop"><i class="icon ion-plus"></i></button>',
-    //         //     controller: function ($timeout) {
-    //         //         $timeout(function () {
-    //         //             document.getElementById('fab-gallery').classList.toggle('on');
-    //         //         }, 600);
-    //         //     }
-    //         // }
-    //     }
-    // })
+    .state('app.polls', {
+        url: '/groups/:grpId/:pollId',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/poll.html',
+                controller: 'PollCtrl'
+            }
+            // ,
+            // 'fabContent': {
+            //     template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-calm drop"><i class="icon ion-plus"></i></button>',
+            //     controller: function ($timeout) {
+            //         $timeout(function () {
+            //             document.getElementById('fab-gallery').classList.toggle('on');
+            //         }, 600);
+            //     }
+            // }
+        }
+    })
 
     .state('app.login', {
         url: '/login',
@@ -157,11 +157,11 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
                 controller: 'ProfileCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900 drop"><i class="icon ion-plus"></i></button>',
                 controller: function ($timeout) {
                     $timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);
+                    }, 50);
                 }
             }
         }

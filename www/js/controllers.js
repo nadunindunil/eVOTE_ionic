@@ -137,7 +137,7 @@ evote.controller('RegisterCtrl', function($scope, $timeout, $stateParams, ionicM
 });
 
 
-evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
+evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
@@ -156,6 +156,24 @@ evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMate
     
 
     $scope.grp = $stateParams.groupId;
+
+    $scope.PollsList = {};
+
+    $http.get("http://localhost:8000/api/getGroupPolls/"+ $stateParams.groupId)
+            .success(function(data) {
+
+                $scope.PollsList = data;
+                console.log($scope.PollsList);
+                
+                
+            })
+            .error(function(data) {
+                var alertPopup = $ionicPopup.alert({
+                     title: 'SOMETHING WENT WRONG!',
+                     template: 'please check your internet connection!'
+                    });
+                
+            });
 
   //   $ionicModal.fromTemplateUrl('templates/poll-modal.html', {
   //       scope: $scope,
@@ -180,7 +198,7 @@ evote.controller('GroupCtrl', function($scope, $timeout, $stateParams, ionicMate
 
 });
 
-evote.controller('PollCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('PollCtrl', function($scope, $http, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
@@ -198,7 +216,26 @@ evote.controller('PollCtrl', function($scope, $timeout, $stateParams, ionicMater
     });
     
 
-    $scope.pll = $stateParams.groupId;
+    $scope.pll = $stateParams.pollId;
+    $scope.PollInfo = {};
+
+    $http.get("http://localhost:8000/api/getPollInfo/"+ $stateParams.pollId)
+            .success(function(data) {
+
+                $scope.PollInfo = data[0];
+                console.log($scope.PollInfo);
+                
+                
+            })
+            .error(function(data) {
+                var alertPopup = $ionicPopup.alert({
+                     title: 'SOMETHING WENT WRONG!',
+                     template: 'please check your internet connection!'
+                    });
+                
+            });
+
+
 
 
 });
