@@ -74,11 +74,32 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
                 controller: 'GroupsCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-gallery" class="button button-fab button-fab-top-right expanded button-calm-100"><i class="icon ion-plus calm"></i></button>',
-                controller: function ($timeout) {
+                template: '<button id="fab-groups" on-touch="show_groupsModel();" class="button button-fab button-fab-top-right expanded button-calm-100"><i class="icon ion-plus calm"></i></button>',
+                controller: function ($timeout,$ionicModal,$scope) {
                     $timeout(function () {
-                        document.getElementById('fab-gallery').classList.toggle('on');
+                        document.getElementById('fab-groups').classList.toggle('on');
                     }, 50);
+
+                    $ionicModal.fromTemplateUrl('templates/groups-modal.html', {
+                        scope: $scope,
+                        animation: 'slide-in-up'
+                    }).then(function(modal) {
+                        $scope.modal = modal;
+                    });
+
+                    $scope.show_groupsModel = function() {
+                        $scope.modal.show();
+                        console.log("inside the show model")
+
+                    };
+
+                    $scope.closeModal = function() {
+                        $scope.modal.hide();
+                    };
+                    // Cleanup the modal when we're done with it
+                    $scope.$on('$destroy', function() {
+                        $scope.modal.remove();
+                    });
                 }
             }
         }
@@ -92,11 +113,32 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
         controller: 'GroupCtrl'
       },
       'fabContent': {
-                template: '<button id="fab-group" class="button button-fab button-fab-top-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
-                controller: function ($timeout) {
+                template: '<button id="fab-group" on-touch="show_pollsModel()" class="button button-fab button-fab-top-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
+                controller: function ($timeout,$scope,$ionicModal) {
                     $timeout(function () {
                         document.getElementById('fab-group').classList.toggle('on');
                     }, 50);
+
+                    $ionicModal.fromTemplateUrl('templates/polls_modal.html', {
+                        scope: $scope,
+                        animation: 'slide-in-up'
+                    }).then(function(modal) {
+                        $scope.modal = modal;
+                    });
+
+                    $scope.show_pollsModel = function() {
+                        $scope.modal.show();
+                        console.log("inside the show model")
+
+                    };
+
+                    $scope.closeModal = function() {
+                        $scope.modal.hide();
+                    };
+                    // Cleanup the modal when we're done with it
+                    $scope.$on('$destroy', function() {
+                        $scope.modal.remove();
+                    });
                 }
             }
     }

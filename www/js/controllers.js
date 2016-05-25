@@ -176,7 +176,7 @@ evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, io
                 
             });
 
-  //   $ionicModal.fromTemplateUrl('templates/poll-modal.html', {
+  //   $ionicModal.fromTemplateUrl('templates/groups-modal.html', {
   //       scope: $scope,
   //       animation: 'slide-in-up'
   //   }).then(function(modal) {
@@ -185,7 +185,7 @@ evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, io
 
   //   $scope.openModal = function() {
   //       $scope.modal.show();
-        
+
   //   };
 
   //   $scope.closeModal = function() {
@@ -350,7 +350,7 @@ evote.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicM
     ionicMaterialInk.displayEffect();
 })
 
-evote.controller('GroupsCtrl', function($scope, $http, $rootScope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('GroupsCtrl', function($scope, $http, $rootScope, $stateParams, $ionicModal , $timeout, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
@@ -385,6 +385,8 @@ evote.controller('GroupsCtrl', function($scope, $http, $rootScope, $stateParams,
                     });
                 
             });
+
+      
 
 
     
