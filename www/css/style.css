@@ -27,7 +27,7 @@ p {
 /* Menu
 ==================================*/
 .menu .bar.bar-header.expanded {
-    transition: all .5s ease-in-out;
+    transition: all .0s ease-in-out;
 }
 
 .menu-open .bar.bar-header.expanded {

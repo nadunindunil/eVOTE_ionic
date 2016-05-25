@@ -51,8 +51,8 @@
             </div>
         </div> -->
 
-        <div  class="list">
-            <a ng-repeat="poll in PollsList track by $index" href="#/app/groups/{{grp}}/{{poll.poll_ID}}" class="item item-avatar item-icon-right">
+        <div >
+            <a ng-repeat="poll in PollsList track by $index" href="#/app/groups/{{grp}}/{{poll.id}}" class="item item-avatar item-icon-right padding-vertical">
                 <img src="img/material1.jpg">
                 <strong>{{poll.name}}</strong> asked.
                 <strong>{{poll.pll_name}}</strong> 

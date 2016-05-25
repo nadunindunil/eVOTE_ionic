@@ -107,8 +107,8 @@ evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout,
 
                     $state.go('app.profile');
                     //alert(data[0].name);
-                    $rootScope.name = data[0].name;
-                    $rootScope.id = data[0].id;
+                    $rootScope.name = data.name;
+                    $rootScope.id = data.id;
 
                     console.log($rootScope.id);
 
@@ -159,6 +159,7 @@ evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, io
 
     $scope.PollsList = {};
 
+
     $http.get("http://localhost:8000/api/getGroupPolls/"+ $stateParams.groupId)
             .success(function(data) {
 
@@ -198,7 +199,7 @@ evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, io
 
 });
 
-evote.controller('PollCtrl', function($scope, $http, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
@@ -218,11 +219,28 @@ evote.controller('PollCtrl', function($scope, $http, $timeout, $stateParams, ion
 
     $scope.pll = $stateParams.pollId;
     $scope.PollInfo = {};
+    $scope.PollChoices = {};
+    $scope.currentTask = 0;  // given answer
+    $scope.judge = "";
+
+    var isChoiceMade = function () {
+
+        if ($scope.currentTask>0){
+            $scope.judge = "you have given the vote";
+
+        }
+        else if($scope.currentTask == 0){
+            console.log("in else");
+            $scope.judge = "You haven't given your vote for the poll";
+        }
+    };
+
+
 
     $http.get("http://localhost:8000/api/getPollInfo/"+ $stateParams.pollId)
             .success(function(data) {
 
-                $scope.PollInfo = data[0];
+                $scope.PollInfo = data;
                 console.log($scope.PollInfo);
                 
                 
@@ -234,6 +252,52 @@ evote.controller('PollCtrl', function($scope, $http, $timeout, $stateParams, ion
                     });
                 
             });
+
+    $http.get("http://localhost:8000/api/getPollChoices/"+ $stateParams.pollId)
+        .success(function(data) {
+
+            $scope.PollChoices = data;
+            console.log($scope.PollChoices);
+
+
+        })
+        .error(function(data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'SOMETHING WENT WRONG!',
+                template: 'please check your internet connection!'
+            });
+
+        });
+
+    // will return users answer which was given to this poll
+
+    $http.get("http://localhost:8000/api/getUserVote/"+ $rootScope.id +"/poll/"+ $stateParams.pollId)
+        .success(function(data) {
+
+            if (data[0] != null){
+                $scope.currentTask = data[0].choice_ID;
+                console.log($scope.currentTask);
+
+            }
+
+            isChoiceMade();
+
+
+        })
+        .error(function(data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'SOMETHING WENT WRONG!',
+                template: 'please check your internet connection!'
+            });
+
+
+
+        });
+
+    // search for the vote user given
+
+
+
 
 
 
@@ -269,19 +333,6 @@ evote.controller('ProfileCtrl', function($scope, $rootScope, $stateParams, $time
 
     $scope.usrname = $rootScope.name;
 
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
     // Set Ink
     ionicMaterialInk.displayEffect();
 });
@@ -293,11 +344,7 @@ evote.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicM
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab('right');
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideIn({
-            selector: '.animate-fade-slide-in .item'
-        });
-    }, 200);
+    
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
@@ -321,6 +368,7 @@ evote.controller('GroupsCtrl', function($scope, $http, $rootScope, $stateParams,
     });
 
     $scope.GroupsList = {};
+
 
     $http.get("http://localhost:8000/api/getUserGroups/"+ $rootScope.id)
             .success(function(data) {
