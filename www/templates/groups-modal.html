@@ -4,7 +4,7 @@
 
     </ion-header-bar>
     <ion-content>
-        <form ng-submit="save_group()">
+        <form>
             <div class="list">
                 <label class="item item-input item-floating-label">
                     <span class="input-label">group Name</span>
@@ -15,10 +15,9 @@
                     <input type="text" placeholder="description" ng-model="group.description">
                 </label>
                 <label class="item">
-                    <button class="button button-block button-positive ink" type="submit">create group</button>
+                    <button class="button button-block button-positive ink" on-touch="createGroup()">create group</button>
                     <button class="button button-block button-assertive ink" on-touch="closeModal()">Close</button>
                 </label>
-
             </div>
         </form>
     </ion-content>
