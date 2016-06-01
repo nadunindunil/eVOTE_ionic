@@ -1,21 +1,21 @@
 <ion-modal-view>
     <ion-header-bar class="bar-assertive">
-        <h1 class="title">Create Group</h1>
+        <h1 class="title">Create group</h1>
 
     </ion-header-bar>
     <ion-content>
         <form ng-submit="save_group()">
             <div class="list">
                 <label class="item item-input item-floating-label">
-                    <span class="input-label">Group Name</span>
-                    <input type="text" placeholder="Group name" ng-model="group.group_name">
+                    <span class="input-label">group Name</span>
+                    <input type="text" placeholder="group name" ng-model="group.group_name">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">description</span>
                     <input type="text" placeholder="description" ng-model="group.description">
                 </label>
                 <label class="item">
-                    <button class="button button-block button-positive ink" type="submit">create Group</button>
+                    <button class="button button-block button-positive ink" type="submit">create group</button>
                     <button class="button button-block button-assertive ink" on-touch="closeModal()">Close</button>
                 </label>
 
