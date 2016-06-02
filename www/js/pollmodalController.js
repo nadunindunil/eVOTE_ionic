@@ -1,27 +1,34 @@
-evote.controller('PollModalCtrl', function($scope,$http,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal) {
-  $timeout(function () {
-      document.getElementById('fab-group').classList.toggle('on');
-  }, 50);
+evote.controller('PollModalCtrl', function($scope,$state,$http,$rootScope,$ionicPopup,$timeout,$ionicPopup,$stateParams,$ionicModal) {
+    $scope.poll = {};
 
-  $ionicModal.fromTemplateUrl('templates/polls_modal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-  }).then(function(modal) {
-      $scope.modal = modal;
-  });
+    $scope.createGroup = function(){
+      $http.post("http://localhost:8000/api/addPoll", $scope.poll)
+          .then(function successCallback(response) {
+              console.log(response);
+              if (response.status == 201){
+                var alertPopup = $ionicPopup.alert({
+                     title: 'Success!',
+                     template: 'Group was created!'
+                    });
 
-  $scope.show_pollsModel = function() {
-      $scope.modal.show();
-      console.log("inside the show model")
+                    $scope.poll = {};
+                    $scope.closeModal();
 
-  };
+
+              }
+
+          },
+          function errorCallback(data) {
+              var alertPopup = $ionicPopup.alert({
+                   title: 'SOMETHING WENT WRONG!',
+                   template: 'please check your internet connection!'
+                  });
+
+          });
+    };
 
   $scope.closeModal = function() {
-      $scope.modal.hide();
+      $state.go('app.group');
   };
-  // Cleanup the modal when we're done with it
-  $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-  });
 
 });

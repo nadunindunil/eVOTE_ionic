@@ -4,25 +4,20 @@
             <div class="card stable-bg ink ink-dark">
                 <div class="item item-avatar item-text-wrap">
                     <span class="avatar" style="background-image: url('img/dulitha.jpg');"></span>
-                    
+
                     <strong>{{PollInfo.pll_name}} <small>{{judge}}</small></strong>
                     <p> {{PollInfo.description}}</p>
                     <div class="card-footer text-right">
                         <i class="icon ion-chatbubble positive"></i> 6
-                        
+
                         <div class="pull-left">
                             <i class="icon ion-clock"></i> Deadline: {{PollInfo.deadline}}
                         </div>
                     </div>
                 </div>
-
                 <ion-radio ng-repeat="chce in PollChoices track by $index" ng-model="$parent.currentTask" value="{{chce.choice_ID}}" >{{chce.choice}}</ion-radio>
-
             </div>
-            
-                
-            
         </div>
-        
+
     </ion-content>
 </ion-view>

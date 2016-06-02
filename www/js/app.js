@@ -67,6 +67,7 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
     })
 
     .state('app.groups', {
+        cache: false,
         url: '/groups',
         views: {
             'menuContent': {
@@ -74,8 +75,8 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
                 controller: 'GroupsCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-groups" on-touch="show_groupsModel();" class="button button-fab button-fab-top-right expanded button-calm-100"><i class="icon ion-plus calm"></i></button>',
-                controller: 'GroupModalCtrl'
+                template: '<button id="fab-groups" ui-sref="app.crtgrp" class="button button-fab button-fab-top-right expanded button-calm-100"><i class="icon ion-plus calm"></i></button>',
+                controller: 'GroupsCtrl'
             }
         }
     })
@@ -88,7 +89,7 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
         controller: 'GroupCtrl'
       },
       'fabContent': {
-                template: '<button id="fab-group" on-touch="show_pollsModel()" class="button button-fab button-fab-top-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
+                template: '<button id="fab-group" ui-sref="app.crtpoll" class="button button-fab button-fab-top-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
                 controller: 'PollModalCtrl'
             }
     }
@@ -127,7 +128,30 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
             }
         }
     })
-
+    .state('app.crtgrp', {
+        url: '/c_group',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/groups-modal.html',
+                controller: 'GroupModalCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
+    .state('app.crtpoll', {
+        url: '/c_poll',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/polls-modal.html',
+                controller: 'PollModalCtrl'
+            },
+            'fabContent': {
+                template: ''
+            }
+        }
+    })
     .state('app.register', {
         url: '/register',
         views: {

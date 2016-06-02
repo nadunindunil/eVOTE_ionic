@@ -10,4 +10,6 @@ evote.controller('ProfileCtrl', function($scope, $rootScope, $stateParams, $time
 
     // Set Ink
     ionicMaterialInk.displayEffect();
+
+
 });

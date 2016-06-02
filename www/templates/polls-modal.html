@@ -1,21 +1,21 @@
-<ion-view view-title="CREATE GROUP">
+<ion-view view-title="CREATE POLL">
     <ion-content ng-class="{expanded:isExpanded}">
-      <form>
+      <form ng-submit="save_poll()">
           <div class="list">
               <label class="item item-input item-floating-label">
-                  <span class="input-label">group Name</span>
-                  <input type="text" placeholder="group name" ng-model="group.group_name">
+                  <span class="input-label">Poll Name</span>
+                  <input type="text" placeholder="Poll name" ng-model="poll.poll_name">
               </label>
               <label class="item item-input item-floating-label">
                   <span class="input-label">description</span>
-                  <input type="text" placeholder="description" ng-model="group.description">
+                  <input type="text" placeholder="description" ng-model="poll.description">
               </label>
               <label class="item">
-                  <button class="button button-block button-positive ink" on-touch="createGroup();GroupsList = init();">create group</button>
+                  <button class="button button-block button-positive ink" type="submit">create Poll</button>
                   <button class="button button-block button-assertive ink" on-touch="closeModal()">Close</button>
               </label>
-          </div>
 
+          </div>
       </form>
     </ion-content>
 </ion-view>
