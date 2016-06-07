@@ -1,8 +1,8 @@
 evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    // $scope.isExpanded = false;
+    // $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller

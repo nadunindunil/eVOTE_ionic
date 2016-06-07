@@ -1,8 +1,8 @@
-evote.controller('GroupCtrl', function($scope, $http, $timeout, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
+evote.controller('GroupCtrl', function($scope, $http, $timeout, $rootScope, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    // $scope.isExpanded = true;
+    // $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller

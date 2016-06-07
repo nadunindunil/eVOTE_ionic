@@ -1,8 +1,8 @@
 evote.controller('GroupsCtrl', function($scope,$state,$http,$rootScope,$stateParams,$ionicPopup,$ionicModal,$timeout,ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    // $scope.isExpanded = true;
+    // $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller
@@ -14,6 +14,8 @@ evote.controller('GroupsCtrl', function($scope,$state,$http,$rootScope,$statePar
     ionicMaterialMotion.fadeSlideInRight({
         selector: '.animate-fade-slide-in .item'
     });
+
+    ionicMaterialMotion.fadeSlideInRight();
 
     $scope.GroupsList = {};
 

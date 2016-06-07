@@ -1,4 +1,18 @@
-evote.controller('PollModalCtrl', function($scope,$state,$http,$rootScope,$ionicPopup,$timeout,$ionicPopup,$stateParams,$ionicModal) {
+evote.controller('PollModalCtrl', function($scope,$ionicHistory,$state,$http,$rootScope,$ionicPopup,$timeout,$ionicPopup,ionicMaterialInk,$stateParams,$ionicModal) {
+  // Set Header
+    $scope.$parent.showHeader();
+    $scope.$parent.clearFabs();
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
+    $scope.$parent.setHeaderFab(false);
+
+    $scope.usrname = $rootScope.name;
+
+    // Set Ink
+    ionicMaterialInk.displayEffect();
+
+
+
     $scope.poll = {};
 
     $scope.createGroup = function(){
@@ -28,7 +42,7 @@ evote.controller('PollModalCtrl', function($scope,$state,$http,$rootScope,$ionic
     };
 
   $scope.closeModal = function() {
-      $state.go('app.group');
+      $ionicHistory.goBack();
   };
 
 });

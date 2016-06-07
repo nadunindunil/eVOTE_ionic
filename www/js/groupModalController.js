@@ -7,6 +7,8 @@ evote.controller('GroupModalCtrl', function($scope,$state,$http,$rootScope,$time
   $scope.$parent.setExpanded(false);
   $scope.$parent.setHeaderFab(false);
 
+  
+
   $scope.usrname = $rootScope.name;
 
   // Set Ink
