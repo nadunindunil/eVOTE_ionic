@@ -1,21 +1,28 @@
 <ion-view view-title="CREATE GROUP">
     <ion-content ng-class="{expanded:isExpanded}">
-      <form>
-          <div class="list">
-              <label class="item item-input item-floating-label">
+      <form name="groupForm" novalidate>
+          <div class="list" style="padding-top: 5px;">
+              <label class="item item-input item-floating-label no-errors"  ng-class="{ 'has-errors' : groupForm.groupName.$invalid && groupForm.groupName.$touched , 'no-errors' : groupForm.groupName.$valid && groupForm.groupName.$touched}">
                   <span class="input-label">Group Name</span>
-                  <input type="text" placeholder="group name" ng-model="group.group_name">
+                  <input type="text" name="groupName" placeholder="group name" ng-model="group.group_name" ng-minlength="5" ng-maxlength="20" required>
               </label>
-              <label class="item item-input item-floating-label">
+              <div class="error-container" ng-show="groupForm.groupName.$error && groupForm.groupName.$touched" ng-messages="groupForm.groupName.$error">
+                <div ng-messages-include="templates/error-list.html"></div>
+              </div>
+              <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : groupForm.description.$invalid && groupForm.description.$touched, 'no-errors' : groupForm.description.$valid && groupForm.description.$touched}">
                   <span class="input-label">Description</span>
-                  <input type="text" placeholder="description" ng-model="group.description">
+                  <input type="text" name="description" placeholder="description" ng-model="group.description" ng-minlength="5" ng-maxlength="20" required>
               </label>
+              <div class="error-container last-error-container"  ng-show="groupForm.description.$error && groupForm.description.$touched" ng-messages="groupForm.description.$error">
+                <div ng-messages-include="templates/error-list.html"></div>
+              </div>
               <label class="item">
-                  <button class="button button-block button-positive ink" on-touch="createGroup()">create group</button>
+                  <button class="button button-block button-positive ink" ng-disabled="groupForm.$invalid" on-touch="createGroup()">create group</button>
                   <button class="button button-block button-assertive ink" on-touch="closeModal()">Close</button>
               </label>
           </div>
 
       </form>
+
     </ion-content>
 </ion-view>

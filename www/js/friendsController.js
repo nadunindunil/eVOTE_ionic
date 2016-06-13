@@ -1,4 +1,4 @@
-evote.controller('FriendsCtrl', function($scope,$cordovaContacts, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('FriendsCtrl', function($scope,$cordovaContacts,$ionicLoading, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -18,6 +18,11 @@ evote.controller('FriendsCtrl', function($scope,$cordovaContacts, $stateParams, 
 
     // taking contacts
     $scope.getContacts = function() {
+      console.log("inside the contact function");
+      $ionicLoading.show({
+        template: '<ion-spinner> </ion-spinner>'
+      });
+
     $scope.phoneContacts = [];
 
     function onSuccess(contacts) {
@@ -25,17 +30,19 @@ evote.controller('FriendsCtrl', function($scope,$cordovaContacts, $stateParams, 
         var contact = contacts[i];
         $scope.phoneContacts.push(contact);
       }
+      $ionicLoading.hide();
     };
 
     function onError(contactError) {
       alert(contactError);
+      $ionicLoading.hide();
     };
 
     var options = {};
     options.multiple = true;
 
     $cordovaContacts.find(options).then(onSuccess, onError);
+
   };
 
-  $scope.getContacts();
 });

@@ -1,5 +1,9 @@
+'use strict'
+
 evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout, $rootScope,$stateParams, ionicMaterialInk) {
     $scope.user = {};
+
+    $scope.t = true;
 
     $scope.$parent.clearFabs();
     $timeout(function() {
@@ -25,6 +29,7 @@ evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout,
                     //alert(data[0].name);
                     $rootScope.name = data.name;
                     $rootScope.id = data.id;
+                    $scope.id = data.id;
 
                     console.log($rootScope.id);
 
