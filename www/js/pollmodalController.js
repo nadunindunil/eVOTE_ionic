@@ -11,24 +11,42 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
     // Set Ink
     ionicMaterialInk.displayEffect();
 
+    $scope.closeModal = function() {
+        $ionicHistory.goBack();
+    };
 
 
     $scope.poll = {};
 
-    $scope.createGroup = function(){
-      $http.post( loginservices.getlink() + "addPoll", $scope.poll)
+    $scope.addPoll = function(){
+      $http.post( loginservices.getlink() +"addPoll", $scope.poll)
           .then(function successCallback(response) {
               console.log(response);
+              console.log($scope.poll);
+              // add the poll in here
+
               if (response.status == 201){
-                var alertPopup = $ionicPopup.alert({
-                     title: 'Success!',
-                     template: 'Group was created!'
-                    });
+                    // need to fix the reload issue
 
-                    $scope.poll = {};
-                    $scope.closeModal();
+                    $http.post( loginservices.getlink() + "addUserPoll", $scope.poll)
+                        .then(function successCallback(response) {
+                            console.log(response);
+                            console.log($scope.poll);
+                            // add the poll created by in here
+                        },
+                        function errorCallback(data) {
+                            var alertPopup = $ionicPopup.alert({
+                                 title: 'SOMETHING WENT WRONG!',
+                                 template: 'please check your internet connection!'
+                                });
+                        });
+                        var alertPopup = $ionicPopup.alert({
+                             title: 'Success!',
+                             template: 'Poll was created!'
+                            });
+                            // created by post adding from here!
 
-
+                            $scope.closeModal();
               }
 
           },
@@ -40,9 +58,5 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
 
           });
     };
-
-  $scope.closeModal = function() {
-      $ionicHistory.goBack();
-  };
 
 });

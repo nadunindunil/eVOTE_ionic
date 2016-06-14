@@ -39,4 +39,10 @@ evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoadin
                     $ionicLoading.hide();
 
             });
+
+
+    $scope.createPoll = function() {
+
+      
+    };
 });

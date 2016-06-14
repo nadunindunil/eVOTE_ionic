@@ -182,6 +182,25 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','
             }
         }
     })
+    .state('app.choicemdl', {
+        url: '/poll_choice_model',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/pollChoice-model.html',
+                controller: 'PollChoiceModalCtrl'
+            }
+            ,
+            'fabContent': {
+                template: '<button id="fab-crtgrp" class="button button-fab button-fab-bottom-right expanded button-calm drop"><i class="icon ion-plus"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-crtgrp').classList.toggle('on');
+                    }, 50);
+                    document.getElementById('fab-crtgrp').style.display = 'none';
+                }
+            }
+        }
+    })
     .state('app.register', {
         url: '/register',
         views: {
