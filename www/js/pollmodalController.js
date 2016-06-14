@@ -1,4 +1,4 @@
-evote.controller('PollModalCtrl', function($scope,$ionicHistory,$state,$http,$rootScope,$ionicPopup,$timeout,$ionicPopup,ionicMaterialInk,$stateParams,$ionicModal) {
+evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$state,$http,$rootScope,$ionicPopup,$timeout,$ionicPopup,ionicMaterialInk,$stateParams,$ionicModal) {
   // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -16,7 +16,7 @@ evote.controller('PollModalCtrl', function($scope,$ionicHistory,$state,$http,$ro
     $scope.poll = {};
 
     $scope.createGroup = function(){
-      $http.post("http://localhost:8000/api/addPoll", $scope.poll)
+      $http.post( loginservices.getlink() + "addPoll", $scope.poll)
           .then(function successCallback(response) {
               console.log(response);
               if (response.status == 201){

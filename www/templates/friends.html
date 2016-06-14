@@ -1,6 +1,6 @@
 <ion-view view-title="Friends" ng-init="getContacts();">
+  
     <ion-content ng-class="{expanded:isExpanded}">
-
       <div>
           <a ng-repeat="contact in phoneContacts | orderBy:'name.formatted'" class="item item-avatar item-icon-right">
               <img src="img/material1.jpg">

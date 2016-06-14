@@ -1,6 +1,6 @@
 'use strict'
 
-evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout, $rootScope,$stateParams, ionicMaterialInk) {
+evote.controller('LoginCtrl', function($scope,loginservices,$http,$state,$ionicPopup,$timeout, $rootScope,$stateParams, ionicMaterialInk) {
     $scope.user = {};
 
     $scope.t = true;
@@ -13,7 +13,7 @@ evote.controller('LoginCtrl', function($scope,$http,$state,$ionicPopup,$timeout,
 
     $scope.authenticate = function(){
         console.log($scope.user);
-        $http.post("http://localhost:8000/api/authenticate", $scope.user)
+        $http.post( loginservices.getlink() +"authenticate", $scope.user)
             .success(function(data) {
                 console.log(data);
                 if (data == "not found"){

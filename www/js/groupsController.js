@@ -1,4 +1,4 @@
-evote.controller('GroupsCtrl', function($scope,$state,$http,$rootScope,$stateParams,$ionicPopup,$ionicModal,$timeout,ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('GroupsCtrl',function($scope,loginservices,$state,$http,$rootScope,$stateParams,$ionicPopup,$ionicModal,$timeout,ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     // $scope.isExpanded = true;
@@ -22,7 +22,7 @@ evote.controller('GroupsCtrl', function($scope,$state,$http,$rootScope,$statePar
     function init(){
       console.log("inside init");
 
-      $http.get("http://localhost:8000/api/getUserGroups/"+ $rootScope.id)
+      $http.get( loginservices.getlink() +"getUserGroups/"+ $rootScope.id)
               .success(function(data) {
                   $scope.GroupsList = data;
                   console.log("group list");

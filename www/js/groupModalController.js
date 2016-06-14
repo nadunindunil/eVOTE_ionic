@@ -1,4 +1,4 @@
-evote.controller('GroupModalCtrl', function($scope,$state,$http,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal,ionicMaterialMotion, ionicMaterialInk) {
+evote.controller('GroupModalCtrl', function($scope,loginservices,$state,$http,$rootScope,$timeout,$ionicPopup,$stateParams,$ionicModal,ionicMaterialMotion, ionicMaterialInk) {
 
   // Set Header
   $scope.$parent.showHeader();
@@ -7,7 +7,7 @@ evote.controller('GroupModalCtrl', function($scope,$state,$http,$rootScope,$time
   $scope.$parent.setExpanded(false);
   $scope.$parent.setHeaderFab(false);
 
-  
+
 
   $scope.usrname = $rootScope.name;
 
@@ -24,7 +24,7 @@ evote.controller('GroupModalCtrl', function($scope,$state,$http,$rootScope,$time
           $scope.group.createdby = $rootScope.id;
 
           $scope.createGroup = function(){
-            $http.post("http://localhost:8000/api/addGroup", $scope.group)
+            $http.post( loginservices.getlink() +"addGroup", $scope.group)
                 .then(function successCallback(response) {
                     console.log(response);
                     console.log($scope.group);
@@ -33,7 +33,7 @@ evote.controller('GroupModalCtrl', function($scope,$state,$http,$rootScope,$time
                     if (response.status == 201){
                           // need to fix the reload issue
 
-                          $http.post("http://localhost:8000/api/addUserGroup", $scope.group)
+                          $http.post( loginservices.getlink() + "addUserGroup", $scope.group)
                               .then(function successCallback(response) {
                                   console.log(response);
                                   console.log($scope.group);

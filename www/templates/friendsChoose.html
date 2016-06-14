@@ -1,0 +1,24 @@
+<ion-view view-title="Select Group Members" ng-init="getContacts();">
+  <ion-nav-buttons side="primary">
+
+      <button class="button button-icon button-clear ion-checkmark" ng-click="done()">
+      </button>
+
+  </ion-nav-buttons>
+
+</ion-header-bar>
+    <ion-content ng-class="{expanded:isExpanded}">
+
+        <ul class="list">
+
+            <li style="border-bottom:1px solid grey;" ng-repeat="contact in phoneContacts | orderBy:'name.formatted'" class="item item-checkbox item-avatar item-icon-right">
+              <h2>{{ contact.name.formatted }}</h2>
+               <label class="checkbox">
+                 <input type="checkbox" data-checklist-model="user.phoneContacts" data-checklist-value="contact">
+
+               </label>
+            </li>
+
+        </ul>
+    </ion-content>
+</ion-view>

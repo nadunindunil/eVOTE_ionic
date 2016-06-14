@@ -1,4 +1,4 @@
-evote.controller('FriendsCtrl', function($scope,$cordovaContacts,$ionicLoading, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('FriendsCtrl', function($scope,loginservices, $cordovaContacts,$ionicLoading,$ionicPopup, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion ,$ionicModal) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -15,6 +15,28 @@ evote.controller('FriendsCtrl', function($scope,$cordovaContacts,$ionicLoading, 
 
     // Set Ink
     ionicMaterialInk.displayEffect();
+
+    $scope.user = [];
+
+    $scope.done = function(){
+      var alertPopup = $ionicPopup.alert({
+           title: 'DONE!',
+           template: $scope.user.phoneContacts[0].phoneNumbers[0].value
+          });
+    };
+    // get users from the server
+    // $http.get( loginservices.getlink() + "getUsers")
+    //         .success(function(data) {
+    //             $scope.UsersList = data;
+    //             console.log($scope.UsersList);
+    //         })
+    //         .error(function(data) {
+    //             var alertPopup = $ionicPopup.alert({
+    //                  title: 'SOMETHING WENT WRONG!',
+    //                  template: 'please check your internet connection!'
+    //                 });
+    //         });
+
 
     // taking contacts
     $scope.getContacts = function() {
@@ -42,7 +64,8 @@ evote.controller('FriendsCtrl', function($scope,$cordovaContacts,$ionicLoading, 
     options.multiple = true;
 
     $cordovaContacts.find(options).then(onSuccess, onError);
-
   };
+
+
 
 });

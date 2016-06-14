@@ -1,4 +1,4 @@
-evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('PollCtrl', function($scope,loginservices, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     // $scope.isExpanded = false;
@@ -35,7 +35,7 @@ evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ion
 
 
 
-    $http.get("http://localhost:8000/api/getPollInfo/"+ $stateParams.pollId)
+    $http.get( loginservices.getlink() + "getPollInfo/"+ $stateParams.pollId)
             .success(function(data) {
 
                 $scope.PollInfo = data;
@@ -48,7 +48,7 @@ evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ion
                    });
             });
 
-    $http.get("http://localhost:8000/api/getPollChoices/"+ $stateParams.pollId)
+    $http.get( loginservices.getlink() + "getPollChoices/"+ $stateParams.pollId)
         .success(function(data) {
 
             $scope.PollChoices = data;
@@ -66,7 +66,7 @@ evote.controller('PollCtrl', function($scope, $http, $rootScope , $timeout, $ion
 
     // will return users answer which was given to this poll
 
-    $http.get("http://localhost:8000/api/getUserVote/"+ $rootScope.id +"/poll/"+ $stateParams.pollId)
+    $http.get( loginservices.getlink() + "getUserVote/"+ $rootScope.id +"/poll/"+ $stateParams.pollId)
         .success(function(data) {
 
             if (data[0] != null){

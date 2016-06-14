@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','ngCordova','ngMessages'])
+var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','ngCordova','ngMessages','checklist-model'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -60,6 +60,17 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','
         views: {
             'menuContent': {
                 templateUrl: 'templates/friends.html',
+                controller: 'FriendsCtrl'
+            }
+
+        }
+    })
+
+    .state('app.friendsChoose', {
+        url: '/friendsChoose',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/friendsChoose.html',
                 controller: 'FriendsCtrl'
             }
 

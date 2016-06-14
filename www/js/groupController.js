@@ -1,4 +1,4 @@
-evote.controller('GroupCtrl', function($scope, $http,$ionicLoading, $timeout, $rootScope, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
+evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoading, $timeout, $rootScope, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     // $scope.isExpanded = true;
@@ -22,7 +22,7 @@ evote.controller('GroupCtrl', function($scope, $http,$ionicLoading, $timeout, $r
 
 
     $ionicLoading.show();
-    $http.get("http://localhost:8000/api/getGroupPolls/"+ $stateParams.groupId)
+    $http.get(loginservices.getlink() + "getGroupPolls/"+ $stateParams.groupId)
             .success(function(data) {
 
                 $scope.PollsList = data;
