@@ -18,6 +18,9 @@ evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoadin
 
     $scope.grp = $stateParams.groupId;
 
+    loginservices.setGrpID($stateParams.groupId);
+    $rootScope.GrpID = $stateParams.groupId;
+
     $scope.PollsList = {};
 
 
@@ -43,6 +46,6 @@ evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoadin
 
     $scope.createPoll = function() {
 
-      
+
     };
 });

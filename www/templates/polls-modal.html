@@ -4,7 +4,7 @@
           <div>
             <label class="item item-input item-floating-label no-errors"  ng-class="{ 'has-errors' : pollForm.pollName.$invalid && pollForm.pollName.$touched , 'no-errors' : pollForm.pollName.$valid && pollForm.pollName.$touched}">
                 <span class="input-label">poll Name</span>
-                <input type="text" name="pollName" placeholder="poll name" ng-model="poll.poll_name" ng-minlength="5" ng-maxlength="20" required>
+                <input type="text" name="pollName" placeholder="poll name" ng-model="poll.pll_name" ng-minlength="5" ng-maxlength="20" required>
             </label>
             <div class="error-container" ng-show="pollForm.pollName.$error && pollForm.pollName.$touched" ng-messages="pollForm.pollName.$error">
               <div ng-messages-include="templates/error-list.html"></div>
@@ -20,14 +20,14 @@
               <div class="input-label">
                 Editable
               </div>
-              <select>
-                <option>Yes</option>
-                <option selected>No</option>
+              <select ng-model="poll.editable">
+                <option value="Yes">Yes</option>
+                <option value="No" selected>No</option>
               </select>
             </label>
             <label class="item item-input">
                   <span class="input-label">Due Date</span>
-                  <input type="date" ng-model="data.dueDate">
+                  <input type="date" ng-model="poll.deadline">
             </label>
             <label class="item">
                 <button class="button button-block button-positive ink" ng-disabled="pollForm.$invalid" on-touch="addPoll()">create poll</button>

@@ -1,6 +1,6 @@
 evote.factory('loginservices', function() {
 
-	var pollID;
+	var pollID,GrpID;
 
 	return {
 		getlink: function(){
@@ -14,6 +14,13 @@ evote.factory('loginservices', function() {
 		},
 		getPollID: function(){
 			return pollID;
+		},
+		setGrpID: function(g_id){
+			GrpID = g_id;
+			console.log(GrpID);
+		},
+		getGrpID: function(){
+			return GrpID;
 		}
 
 	}
