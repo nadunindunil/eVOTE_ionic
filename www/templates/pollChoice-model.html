@@ -6,8 +6,9 @@
           <input ng-model="choice.text" type="search" placeholder="choice">
         </label>
         <label class="item">
-            <button class="button button-block button-calm ink" ng-click="addChoice();"><i class="icon ion-plus"></i>  Add</button>
-            <button class="button button-block button-assertive ink" ng-click="closeModal();">Close</button>
+            <button class="button button-block button-calm ink" on-touch="addChoice();"><i class="icon ion-plus"></i>  Add</button>
+
+            <button class="button button-block button-assertive ink" on-touch="closeModel();">Close</button>
         </label>
       </form>
     </ion-content>

@@ -17,7 +17,8 @@ evote.controller('GroupsCtrl',function($scope,$ionicLoading,loginservices,$state
 
     ionicMaterialMotion.fadeSlideInRight();
 
-    $scope.GroupsList = {};
+    //$scope.GroupsList = {};
+
     init();
 
     function init(){

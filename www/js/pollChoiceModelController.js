@@ -15,21 +15,18 @@ evote.controller('PollChoiceModalCtrl', function($scope,loginservices,$state,$ht
   ionicMaterialInk.displayEffect();
 
 
-  $scope.closeModal = function() {
-    $state.go('app.groups');;
+  $scope.closeModel = function() {
+    $state.go('app.groups');
   };
 
   $scope.choices = [{text:"",id:0},{text:"",id:1}];
 
   $scope.addChoice = function(){
-
     $scope.choices.push({text:"",id:$scope.choices.length});
-
-
   };
 
-
-
-
+  $scope.addChoices = function() {
+    
+  };
 
 });

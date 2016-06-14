@@ -100,11 +100,7 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','
       },
       'fabContent': {
                 template: '<button id="fab-group" ui-sref="app.crtpoll" class="button button-fab button-fab-bottom-right expanded button-assertive-100"><i class="icon ion-plus assertive"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-group').classList.toggle('on');
-                    }, 50);
-                }
+                controller: 'GroupCtrl'
             }
     }
 

@@ -1,14 +1,15 @@
 <ion-view view-title="Groups">
+
   <ion-header-bar class="bar-subheader item-input-inset bar bar-header">
-    <label class="item-input-wrapper">
+    <label class="item-input">
       <i class="icon ion-ios7-search placeholder-icon"></i>
       <input type="search" placeholder="Search..." ng-model="searchString" >
     </label>
   </ion-header-bar>
-  
+
     <ion-content ng-class="{expanded:isExpanded}">
         <div>
-            <a ng-repeat="group in GroupsList track by $index" href="#/app/groups/{{group.id}}" class="item item-avatar item-icon-right">
+            <a ng-repeat="group in GroupsList | filter:searchString" href="#/app/groups/{{group.id}}" class="item item-avatar item-icon-right">
                 <img src="img/material1.jpg">
                 <h2>{{group.group_name}}</h2>
                 <p>{{group.description}}</p>

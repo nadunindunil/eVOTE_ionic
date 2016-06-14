@@ -1,7 +1,7 @@
 <ion-view view-title="CREATE POLL">
     <ion-content ng-class="{expanded:isExpanded}">
       <form name="pollForm" novalidate>
-          <div class="list">
+          <div>
             <label class="item item-input item-floating-label no-errors"  ng-class="{ 'has-errors' : pollForm.pollName.$invalid && pollForm.pollName.$touched , 'no-errors' : pollForm.pollName.$valid && pollForm.pollName.$touched}">
                 <span class="input-label">poll Name</span>
                 <input type="text" name="pollName" placeholder="poll name" ng-model="poll.poll_name" ng-minlength="5" ng-maxlength="20" required>
@@ -16,9 +16,22 @@
             <div class="error-container last-error-container"  ng-show="pollForm.description.$error && pollForm.description.$touched" ng-messages="pollForm.description.$error">
               <div ng-messages-include="templates/error-list.html"></div>
             </div>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Editable
+              </div>
+              <select>
+                <option>Yes</option>
+                <option selected>No</option>
+              </select>
+            </label>
+            <label class="item item-input">
+                  <span class="input-label">Due Date</span>
+                  <input type="date" ng-model="data.dueDate">
+            </label>
             <label class="item">
                 <button class="button button-block button-positive ink" ng-disabled="pollForm.$invalid" on-touch="addPoll()">create poll</button>
-                <button class="button button-block button-assertive ink" on-touch="closeModal()">Close</button>
+                <button class="button button-block button-assertive ink" on-touch="getSpoll()">Close</button>
             </label>
           </div>
       </form>
