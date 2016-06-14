@@ -39,7 +39,7 @@ evote.controller('LoginCtrl', function($scope,loginservices,$http,$state,$ionicP
             .error(function(data) {
                 var alertPopup = $ionicPopup.alert({
                      title: 'SOMETHING WENT WRONG!',
-                     template: 'please check your internet connection!'
+                     template: data.status
                     });
 
             });
