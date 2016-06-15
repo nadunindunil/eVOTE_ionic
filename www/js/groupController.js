@@ -27,7 +27,7 @@ evote.controller('GroupCtrl', function($scope,$state, loginservices, $http,$ioni
       $http.get(loginservices.getlink() + "removePoll/"+ id)
               .success(function(data) {
 
-                  $scope.PollsList = data;
+                  
 
                   $state.go('app.profile');
               })

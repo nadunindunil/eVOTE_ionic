@@ -19,9 +19,23 @@ evote.controller('GroupsCtrl',function($scope,$ionicLoading,loginservices,$state
 
     //$scope.GroupsList = {};
 
-    init();
+    $scope.delete = function(id) {
+      $http.get(loginservices.getlink() + "removeGroup/"+ id)
+              .success(function(data) {
 
-    function init(){
+                  $state.go('app.profile');
+              })
+              .error(function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                       title: 'SOMETHING WENT WRONG!',
+                       template: 'please check your internet connection!'
+                      });
+
+
+              });
+    };
+
+    $scope.init = function(){
       $ionicLoading.show();
       console.log("inside init");
 
@@ -42,6 +56,8 @@ evote.controller('GroupsCtrl',function($scope,$ionicLoading,loginservices,$state
 
               });
     };
+
+    $scope.init();
 
 
 

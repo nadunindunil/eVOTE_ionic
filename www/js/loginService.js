@@ -4,8 +4,8 @@ evote.factory('loginservices', function() {
 
 	return {
 		getlink: function(){
-			var url = "http://localhost:8000/api/";
-			//var url = "http://104.131.170.249/index.php/api/"
+			// var url = "http://localhost:8000/api/";
+			var url = "http://104.131.170.249/index.php/api/"
 
 			return url;
 		},

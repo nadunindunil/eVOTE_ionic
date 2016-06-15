@@ -8,13 +8,38 @@
   </ion-header-bar>
 
     <ion-content ng-class="{expanded:isExpanded}">
-        <div>
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="init()">
+      </ion-refresher>
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+        <ion-item style="border-bottom:1px solid #e6e6e6" ng-repeat="group in GroupsList | filter:searchString"
+                  item="item"
+                  class="item item-avatar item-icon-right padding-vertical"
+                  href="#/app/groups/{{group.id}}" class="item-remove-animate">
+                  <img src="img/material1.jpg">
+                  <h2>{{group.group_name}}</h2>
+                  <p>{{group.description}}</p>
+                  <i class="icon ion-chevron-right muted"></i>
+          <ion-delete-button class="ion-minus-circled"
+                             ng-click="onItemDelete(item)">
+          </ion-delete-button>
+          <ion-option-button class="button-assertive"
+                             ng-click="delete(group.id)">
+            <i class="icon ion-trash-b"></i>
+          </ion-option-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+
+    </ion-list>
+        <!-- <div>
             <a ng-repeat="group in GroupsList | filter:searchString" href="#/app/groups/{{group.id}}" class="item item-avatar item-icon-right">
                 <img src="img/material1.jpg">
                 <h2>{{group.group_name}}</h2>
                 <p>{{group.description}}</p>
                 <i class="icon ion-chevron-right muted"></i>
             </a>
-        </div>
+        </div> -->
     </ion-content>
 </ion-view>
