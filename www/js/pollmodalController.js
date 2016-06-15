@@ -11,7 +11,7 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
     // Set Ink
     ionicMaterialInk.displayEffect();
 
-    $scope.closeModal = function() {
+    $scope.closeModel = function() {
         $ionicHistory.goBack();
     };
 
@@ -40,6 +40,16 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
                         .then(function successCallback(response) {
                             console.log(response);
                             console.log(response.data);
+                            console.log(response.data.poll);
+                            console.log(response.data.poll.id);
+                            // set poll id from here
+                            $rootScope.pollID = response.data.poll.id;
+                            // created by post adding from here!
+                            var alertPopup = $ionicPopup.alert({
+                                 title: 'Success!',
+                                 template: 'Poll was created!'
+                                });
+                            $state.go('app.choicemdl');
                             // add the poll created by in here
                         },
                         function errorCallback(data) {
@@ -48,13 +58,7 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
                                  template: 'please check your internet connection!'
                                 });
                         });
-                        var alertPopup = $ionicPopup.alert({
-                             title: 'Success!',
-                             template: 'Poll was created!'
-                            });
-                            // created by post adding from here!
 
-                            $scope.closeModal();
               }
 
           },
@@ -66,22 +70,4 @@ evote.controller('PollModalCtrl', function($scope,loginservices,$ionicHistory,$s
 
           });
     };
-
-    // $scope.getSpoll = function() {
-    //   $http.post( loginservices.getlink() +"getPollByName", $scope.poll)
-    //       .then(function successCallback(response) {
-    //           console.log(response);
-    //           console.log($scope.poll);
-    //           loginservices.setPollID(response.data);
-    //           console.log(loginservices.getPollID());
-    //
-    //       },
-    //       function errorCallback(data) {
-    //           var alertPopup = $ionicPopup.alert({
-    //                title: 'SOMETHING WENT WRONG!',
-    //                template: 'please check your internet connection!'
-    //               });
-    //
-    //       });
-    // };
 });

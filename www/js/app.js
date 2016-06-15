@@ -71,8 +71,20 @@ var evote = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput','
         views: {
             'menuContent': {
                 templateUrl: 'templates/friendsChoose.html',
-                controller: 'FriendsCtrl'
+                controller: 'FriendsChooseCtrl'
             }
+            ,
+            'fabContent': {
+                template: '<button id="fab-poll" class="button button-fab button-fab-bottom-right expanded button-calm drop"><i class="icon ion-plus"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-poll').classList.toggle('on');
+                    }, 600);
+
+                    document.getElementById('fab-poll').style.display = 'none';
+                }
+            }
+
 
         }
     })

@@ -15,9 +15,18 @@
                         </div>
                     </div>
                 </div>
-                <ion-radio ng-repeat="chce in PollChoices track by $index" ng-model="$parent.currentTask" value="{{chce.choice_ID}}" >{{chce.choice}}</ion-radio>
+                <ion-radio ng-repeat="chce in PollChoices track by $index" ng-model="$parent.currentTask" ng-change="setVote(chce.choice_ID);" ng-value="{{chce.choice_ID}}" >{{chce.choice}}</ion-radio>
             </div>
         </div>
 
+        <div class="row">
+          <div class="col">
+            <button id="doneButton" class="button col button-block button-calm ink" ng-disabled="task" on-touch="addVote();"><i class="icon ion-checkmark"></i>  Done</button>
+
+          </div>
+          <div class="col">
+            <button class="button button-block button-assertive ink" on-touch="closePoll();">Close</button>
+          </div>
+        </div>
     </ion-content>
 </ion-view>

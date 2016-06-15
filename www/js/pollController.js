@@ -1,4 +1,4 @@
-evote.controller('PollCtrl', function($scope,loginservices, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
+evote.controller('PollCtrl', function($scope,$ionicHistory,loginservices, $http, $rootScope , $timeout, $ionicPopup, $stateParams, ionicMaterialInk, ionicMaterialMotion) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     // $scope.isExpanded = false;
@@ -15,24 +15,67 @@ evote.controller('PollCtrl', function($scope,loginservices, $http, $rootScope , 
         selector: '.animate-fade-slide-in .item'
     });
 
+    $scope.closePoll = function(){
+      $ionicHistory.goBack();
+
+    };
+
     $scope.pll = $stateParams.pollId;
     $scope.PollInfo = {};
     $scope.PollChoices = {};
     $scope.currentTask = 0;  // given answer
     $scope.judge = "";
+    $scope.myVote = {};
+    $scope.myVote.user_ID = $rootScope.id;
+    $scope.myVote.poll_ID = $scope.pll;
+
+
+
+    $scope.setVote = function(value){
+      $scope.myVote.choice_ID = value;
+      console.log($scope.myVote.choice_ID);
+    };
 
     var isChoiceMade = function () {
 
         if ($scope.currentTask>0){
             $scope.judge = "you have given the vote";
+            document.getElementById("doneButton").disabled=true;
 
         }
         else if($scope.currentTask == 0){
             console.log("in else");
             $scope.judge = "You haven't given your vote for the poll";
+            $scope.myVote.choice_ID = $scope.currentTask;
+            document.getElementById("doneButton").disabled=false;
+
         }
     };
 
+    $scope.addVote = function(){
+
+      $http.post( loginservices.getlink() + "addVote", $scope.myVote )
+          .then(function successCallback(response) {
+              console.log(response);
+              console.log(response.data);
+              // set poll id from here
+
+              var alertPopup = $ionicPopup.alert({
+                   title: 'Success!',
+                   template: 'Vote Success!'
+                  });
+              document.getElementById("doneButton").disabled=true;
+              
+              // add the poll created by in here
+          },
+          function errorCallback(data) {
+              var alertPopup = $ionicPopup.alert({
+                   title: 'SOMETHING WENT WRONG!',
+                   template: 'please check your internet connection!'
+                  });
+          });
+
+    };
 
 
     $http.get( loginservices.getlink() + "getPollInfo/"+ $stateParams.pollId)

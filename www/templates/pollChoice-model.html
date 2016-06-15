@@ -1,12 +1,16 @@
-<ion-view view-title="CREATE POLL">
+<ion-view view-title="CREATE POLL {{pollID}}">
+  <ion-nav-buttons side="primary">
+      <button class="button button-icon button-clear ion-plus" ng-click="addChoice()">
+      </button>
+  </ion-nav-buttons>
     <ion-content ng-class="{expanded:isExpanded}">
       <form name="pollChoiceForm" novalidate>
         <label ng-repeat="choice in choices" class="item item-input">
           <i class="icon ion-plus placeholder-icon"></i>
-          <input ng-model="choice.text" type="search" placeholder="choice">
+          <input ng-model="choice.choice" type="search" placeholder="choice">
         </label>
         <label class="item">
-            <button class="button button-block button-calm ink" on-touch="addChoice();"><i class="icon ion-plus"></i>  Add</button>
+            <button class="button button-block button-calm ink" on-touch="addChoices();"><i class="icon ion-checkmark"></i>  Done</button>
 
             <button class="button button-block button-assertive ink" on-touch="closeModel();">Close</button>
         </label>

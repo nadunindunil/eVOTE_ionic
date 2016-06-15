@@ -1,4 +1,4 @@
-<ion-view view-title="Select Group Members">
+<ion-view view-title="Select Group Members>
   <ion-nav-buttons side="primary">
 
       <button class="button button-icon button-clear ion-checkmark" ng-click="done()">
@@ -11,10 +11,10 @@
 
         <ul class="list">
 
-            <li style="border-bottom:1px solid grey;" ng-repeat="contact in UsersList | orderBy:'name.formatted'" class="item item-checkbox item-avatar item-icon-right">
-              <h2>{{ contact.name}}</h2>
+            <li style="border-bottom:1px solid grey;" ng-repeat="contact in phoneContacts | orderBy:'name.formatted'" class="item item-checkbox item-avatar item-icon-right">
+              <h2>{{ contact.name.formatted }}</h2>
                <label class="checkbox">
-                 <input type="checkbox" data-checklist-model="user.UsersList" data-checklist-value="contact">
+                 <input type="checkbox" data-checklist-model="user.phoneContacts" data-checklist-value="contact">
 
                </label>
             </li>

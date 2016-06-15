@@ -54,10 +54,6 @@ evote.controller('GroupModalCtrl', function($scope,loginservices,$state,$http,$r
                                   // created by post adding from here!
 
                                   $scope.closeModal();
-
-
-
-
                     }
 
                 },
