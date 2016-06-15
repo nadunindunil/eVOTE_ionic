@@ -1,4 +1,4 @@
-evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoading, $timeout, $rootScope, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
+evote.controller('GroupCtrl', function($scope,$state, loginservices, $http,$ionicLoading, $timeout, $rootScope, $stateParams, ionicMaterialInk, ionicMaterialMotion,$ionicModal) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     // $scope.isExpanded = true;
@@ -23,6 +23,23 @@ evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoadin
 
     $scope.PollsList = {};
 
+    $scope.delete = function(id) {
+      $http.get(loginservices.getlink() + "removePoll/"+ id)
+              .success(function(data) {
+
+                  $scope.PollsList = data;
+
+                  $state.go('app.profile');
+              })
+              .error(function(data) {
+                  var alertPopup = $ionicPopup.alert({
+                       title: 'SOMETHING WENT WRONG!',
+                       template: 'please check your internet connection!'
+                      });
+
+
+              });
+    };
 
     $ionicLoading.show();
     $http.get(loginservices.getlink() + "getGroupPolls/"+ $stateParams.groupId)
@@ -45,7 +62,7 @@ evote.controller('GroupCtrl', function($scope, loginservices, $http,$ionicLoadin
 
 
     $scope.createPoll = function() {
-
+      //
 
     };
 });

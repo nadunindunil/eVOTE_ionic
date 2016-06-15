@@ -29,6 +29,35 @@ evote.controller('PollCtrl', function($scope,$ionicHistory,loginservices, $http,
     $scope.myVote.user_ID = $rootScope.id;
     $scope.myVote.poll_ID = $scope.pll;
 
+    $scope.labels = [];
+    $scope.data = [];
+    $scope.shouldShowDelete = false;
+     $scope.shouldShowReorder = false;
+     $scope.listCanSwipe = true
+
+    $http.get( loginservices.getlink() + "getVoteSummary/"+ $stateParams.pollId)
+            .success(function(data) {
+
+                $scope.votes = data;
+                console.log($scope.votes);
+
+                for(var k = 0; k<$scope.votes.length ; k++){
+                  $scope.labels.push($scope.votes[k].choice);
+                  $scope.data.push($scope.votes[k].amount);
+
+                }
+                console.log($scope.labels);
+                console.log($scope.data);
+
+            })
+            .error(function(data) {
+                var alertPopup = $ionicPopup.alert({
+                     title: 'SOMETHING WENT WRONG!',
+                     template: 'please check your internet connection!'
+                   });
+            });
+
+
 
 
     $scope.setVote = function(value){
@@ -65,7 +94,7 @@ evote.controller('PollCtrl', function($scope,$ionicHistory,loginservices, $http,
                    template: 'Vote Success!'
                   });
               document.getElementById("doneButton").disabled=true;
-              
+
               // add the poll created by in here
           },
           function errorCallback(data) {
@@ -90,6 +119,8 @@ evote.controller('PollCtrl', function($scope,$ionicHistory,loginservices, $http,
                      template: 'please check your internet connection!'
                    });
             });
+
+
 
     $http.get( loginservices.getlink() + "getPollChoices/"+ $stateParams.pollId)
         .success(function(data) {
