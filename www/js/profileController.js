@@ -1,4 +1,4 @@
-evote.controller('ProfileCtrl', function($scope, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+evote.controller('ProfileCtrl', function($scope,$timeout, $rootScope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     // Set Header
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
@@ -10,6 +10,10 @@ evote.controller('ProfileCtrl', function($scope, $rootScope, $stateParams, $time
 
     // Set Ink
     ionicMaterialInk.displayEffect();
+
+    $timeout(function () {
+        document.getElementById('fab-profile').classList.toggle('on');
+    }, 50);
 
 
 });

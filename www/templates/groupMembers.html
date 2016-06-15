@@ -1,0 +1,13 @@
+<ion-view view-title="Group Members {{GrpID}}">
+
+    <ion-content ng-class="{expanded:isExpanded}">
+      <div>
+          <a ng-repeat="member in GrpMembers" class="item item-avatar item-icon-right">
+              <img src="img/material1.jpg">
+              <h2>{{ member.name }}</h2>
+              <p>{{member.tel}}</p>
+              <i class="icon ion-chevron-right muted"></i>
+          </a>
+      </div>
+    </ion-content>
+</ion-view>

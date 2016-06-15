@@ -1,13 +1,19 @@
 <ion-view view-title="{{grp}}">
-    <ion-nav-buttons side="primary">
-        <button class="button button-icon button-clear ion-plus ink" ui-sref="app.friendsChoose">
-        </button>
-    </ion-nav-buttons>
+
+    <ion-floating-button click="myEvent()" has-footer="false" button-color="#e42112" icon="ion-plus" iconColor="#fff">
+    </ion-floating-button>
+    <ion-floating-menu>
+
+      <ion-floating-item icon="ion-person-add ink" ui-sref="app.friendsChoose"></ion-floating-item>
+      <ion-floating-item icon="ion-plus ink" ui-sref="app.crtpoll"></ion-floating-item>
+      <ion-floating-item icon="ion-person-stalker ink" ui-sref="app.groupMembers"></ion-floating-item>
+
+    </ion-floating-menu>
     <ion-content ng-class="{expanded:isExpanded}">
         <div >
             <a ng-repeat="poll in PollsList track by $index" href="#/app/groups/{{grp}}/{{poll.id}}" class="item item-avatar item-icon-right padding-vertical">
                 <img src="img/material1.jpg">
-                <strong>{{poll.name}}</strong> asked.
+                <strong>{{poll.name}}</strong> asked
                 <strong>{{poll.pll_name}}</strong>
                 <p> {{poll.description}}</p>
                 <i class="icon ion-chevron-right muted"></i>
