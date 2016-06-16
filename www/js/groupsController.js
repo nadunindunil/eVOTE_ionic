@@ -24,6 +24,10 @@ evote.controller('GroupsCtrl',function($scope,$ionicLoading,loginservices,$state
               .success(function(data) {
 
                   $state.go('app.profile');
+                  var alertPopup = $ionicPopup.alert({
+                       title: 'Delete success!',
+                       template: 'Group was deleted!'
+                      });
               })
               .error(function(data) {
                   var alertPopup = $ionicPopup.alert({
@@ -55,6 +59,7 @@ evote.controller('GroupsCtrl',function($scope,$ionicLoading,loginservices,$state
                   $ionicLoading.hide();
 
               });
+             
     };
 
     $scope.init();

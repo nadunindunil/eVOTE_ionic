@@ -21,13 +21,16 @@ evote.controller('GroupCtrl', function($scope,$state, loginservices, $http,$ioni
     loginservices.setGrpID($stateParams.groupId);
     $rootScope.GrpID = $stateParams.groupId;
 
-    $scope.PollsList = {};
+    //$scope.PollsList = {};
 
     $scope.delete = function(id) {
       $http.get(loginservices.getlink() + "removePoll/"+ id)
               .success(function(data) {
 
-                  
+                var alertPopup = $ionicPopup.alert({
+                     title: 'Delete success!',
+                     template: 'Poll was deleted!'
+                    });
 
                   $state.go('app.profile');
               })

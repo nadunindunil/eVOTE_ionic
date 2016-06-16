@@ -7,13 +7,14 @@
             </div>
         </div>
         <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
+            <ion-md-input ng-model="userR.name" placeholder="Username" highlight-color="balanced" type="text"></ion-md-input>
+            <ion-md-input ng-model="userR.tel"  placeholder="telephone" highlight-color="energized" type="tel"></ion-md-input>
+            <ion-md-input ng-model="userR.password"  placeholder="Password" highlight-color="energized" type="password"></ion-md-input>
         </div>
         <div class="padding">
-            <button class="button button-full button-calm ink">Register</button>
+            <button ng-disabled="!userR.name || !userR.tel || !userR.password" class="button button-full button-calm ink">Register</button>
             <button ui-sref="app.login" class="button button-full button-balanced ink">Back</button>
         </div>
-        
+
     </ion-content>
 </ion-view>

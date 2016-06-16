@@ -16,19 +16,25 @@
             <div class="error-container last-error-container"  ng-show="pollForm.description.$error && pollForm.description.$touched" ng-messages="pollForm.description.$error">
               <div ng-messages-include="templates/error-list.html"></div>
             </div>
-            <label class="item item-input item-select">
+            <label class="item item-input item-select" ng-class="{ 'has-errors' : pollForm.edit.$invalid && pollForm.edit.$touched, 'no-errors' : pollForm.edit.$valid && pollForm.edit.$touched}">
               <div class="input-label">
                 Editable
               </div>
-              <select ng-model="poll.editable">
+              <select name="edit" ng-model="poll.editable" required>
                 <option value="Yes">Yes</option>
                 <option value="No" selected>No</option>
               </select>
             </label>
-            <label class="item item-input">
+            <div class="error-container last-error-container"  ng-show="pollForm.edit.$error && pollForm.edit.$touched" ng-messages="pollForm.edit.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
+            <label class="item item-input item-select" ng-class="{ 'has-errors' : pollForm.ldate.$invalid && pollForm.ldate.$touched, 'no-errors' : pollForm.ldate.$valid && pollForm.ldate.$touched}" class="item item-input">
                   <span class="input-label">Due Date</span>
-                  <input type="date" ng-model="poll.deadline">
+                  <input name="ldate" type="date" ng-model="poll.deadline">
             </label>
+            <div class="error-container last-error-container"  ng-show="pollForm.ldate.$error && pollForm.ldate.$touched" ng-messages="pollForm.ldate.$error">
+              <div ng-messages-include="templates/error-list.html"></div>
+            </div>
             <label class="item">
                 <button class="button button-block button-positive ink" ng-disabled="pollForm.$invalid" on-touch="addPoll()">create poll</button>
                 <button class="button button-block button-assertive ink" on-touch="closeModel()">Close</button>

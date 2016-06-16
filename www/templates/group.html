@@ -9,10 +9,16 @@
       <ion-floating-item icon="ion-person-stalker ink" ui-sref="app.groupMembers"></ion-floating-item>
 
     </ion-floating-menu>
+    <ion-header-bar class="bar-subheader item-input-inset bar bar-header">
+      <label class="item-input">
+        <i class="icon ion-ios7-search placeholder-icon"></i>
+        <input type="search" placeholder="Search..." ng-model="searchString" >
+      </label>
+    </ion-header-bar>
     <ion-content ng-class="{expanded:isExpanded}">
       <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
-        <ion-item style="border-bottom:1px solid #e6e6e6" ng-repeat="poll in PollsList"
+        <ion-item style="border-bottom:1px solid #e6e6e6" ng-repeat="poll in PollsList  | filter:searchString"
                   item="item"
                   class="item item-avatar item-icon-right padding-vertical"
                   href="#/app/groups/{{grp}}/{{poll.id}}" class="item-remove-animate">
